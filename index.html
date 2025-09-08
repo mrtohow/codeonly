@@ -1,118 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Kaafi Studio</title>
-<!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
-<!-- Lucide Icons CDN -->
-<script src="https://cdn.jsdelivr.net/npm/lucide@0.271.0/dist/lucide.min.js"></script>
-<!-- React & ReactDOM CDN -->
-<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-<!-- Babel for JSX support -->
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaafi Studio</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- React + ReactDOM -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <!-- Babel -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Lucide UMD Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.271.0/dist/umd/lucide.js"></script>
 </head>
 <body class="bg-gray-900 text-white">
 
 <div id="root"></div>
 
 <script type="text/babel">
-const { useState } = React;
-const { Video, Palette } = window.lucide;
+  const { useState } = React;
 
-const KaafiStudio = () => {
-  const [activeTab, setActiveTab] = useState('designs');
+  const KaafiStudio = () => {
+    const [activeTab, setActiveTab] = useState("designs");
 
-  const designPortfolio = [
-    { id:1,title:"Fashion Brand Design",category:"Brand Identity",thumbnail:"https://images.unsplash.com/photo-1616627981592-60eac25f7f40?w=400&h=400" },
-    { id:2,title:"Wedding Invitation Suite",category:"Print Design",thumbnail:"https://images.unsplash.com/photo-1523906630133-f6934a1abf35?w=400&h=400" },
-    { id:3,title:"Luxury Brand Design",category:"Branding",thumbnail:"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=400" },
-    { id:4,title:"Tourism Event Poster",category:"Marketing Material",thumbnail:"https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=400&h=400" },
-    { id:5,title:"Tourism Promotion",category:"Marketing Material",thumbnail:"https://images.unsplash.com/photo-1487014679447-9f8336841d58?w=400&h=400" },
-    { id:6,title:"VIP Tourism Package",category:"Marketing Material",thumbnail:"https://images.unsplash.com/photo-1509228627153-9f7e54f4df0e?w=400&h=400" },
-    { id:7,title:"Ecommerce Brand Identity",category:"Branding",thumbnail:"https://images.unsplash.com/photo-1531497865140-4c3e2b4c3910?w=400&h=400" },
-    { id:8,title:"Fashion Company Design",category:"Brand Identity",thumbnail:"https://images.unsplash.com/photo-1605902711622-cfb43c443c06?w=400&h=400" },
-  ];
+    const designPortfolio = [
+      { id: 1, title: "Fashion Brand Design", category: "Brand Identity", thumbnail: "https://images.unsplash.com/photo-1616627981592-60eac25f7f40?w=400&h=400" },
+      { id: 2, title: "Wedding Invitation Suite", category: "Print Design", thumbnail: "https://images.unsplash.com/photo-1523906630133-f6934a1abf35?w=400&h=400" },
+      { id: 3, title: "Luxury Brand Design", category: "Branding", thumbnail: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=400" },
+      { id: 4, title: "Tourism Event Poster", category: "Marketing Material", thumbnail: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=400&h=400" },
+      { id: 5, title: "Tourism Promotion", category: "Marketing Material", thumbnail: "https://images.unsplash.com/photo-1487014679447-9f8336841d58?w=400&h=400" },
+      { id: 6, title: "VIP Tourism Package", category: "Marketing Material", thumbnail: "https://images.unsplash.com/photo-1509228627153-9f7e54f4df0e?w=400&h=400" },
+      { id: 7, title: "Ecommerce Brand Identity", category: "Branding", thumbnail: "https://images.unsplash.com/photo-1531497865140-4c3e2b4c3910?w=400&h=400" },
+      { id: 8, title: "Fashion Company Design", category: "Brand Identity", thumbnail: "https://images.unsplash.com/photo-1605902711622-cfb43c443c06?w=400&h=400" },
+    ];
 
-  const videoPortfolio = [
-    { id:1,title:"Promo Video 1",url:"https://www.youtube.com/embed/dQw4w9WgXcQ" },
-    { id:2,title:"Promo Video 2",url:"https://www.youtube.com/embed/3JZ_D3ELwOQ" },
-  ];
+    const videoPortfolio = [
+      { id: 1, title: "Promo Video 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+      { id: 2, title: "Promo Video 2", url: "https://www.youtube.com/embed/3JZ_D3ELwOQ" },
+    ];
 
-  return (
-    <div className="min-h-screen bg-gray-900 text-white p-6">
-      <header className="text-center mb-12">
-        <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Kaafi Studio</h1>
-        <p className="text-gray-300 mt-2">Creative Portfolio & Media</p>
-      </header>
+    const { Video: VideoIcon, Palette: PaletteIcon } = window.lucide.icons;
 
-      {/* Tabs */}
-      <div className="flex justify-center mb-8 space-x-4">
-        <button onClick={()=>setActiveTab('designs')} className={`px-4 py-2 rounded-md ${activeTab==='designs'?'bg-gradient-to-r from-purple-600 to-pink-600 text-white':'bg-gray-800 text-gray-300 hover:text-white hover:bg-gray-700/50'}`}>
-          <svg ref={el=>el&&Palette.attachTo(el)} width="16" height="16" className="inline mr-1"></svg>
-          Designs
-        </button>
-        <button onClick={()=>setActiveTab('videos')} className={`px-4 py-2 rounded-md ${activeTab==='videos'?'bg-gradient-to-r from-blue-600 to-purple-600 text-white':'bg-gray-800 text-gray-300 hover:text-white hover:bg-gray-700/50'}`}>
-          <svg ref={el=>el&&Video.attachTo(el)} width="16" height="16" className="inline mr-1"></svg>
-          Videos
-        </button>
-      </div>
+    return (
+      <div className="min-h-screen bg-gray-900 text-white p-6">
+        <header className="text-center mb-12">
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            Kaafi Studio
+          </h1>
+          <p className="text-gray-300 mt-2">Creative Portfolio & Media</p>
+        </header>
 
-      {/* Portfolio Grid */}
-      {activeTab==='designs' && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {designPortfolio.map((item,index)=>(
-            <div key={item.id} className="group relative overflow-hidden rounded-2xl cursor-pointer bg-gray-800 hover:shadow-2xl hover:shadow-purple-500/20 transition-transform duration-500 transform hover:scale-105 hover:-translate-y-2">
-              <img src={item.thumbnail} alt={item.title} className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"/>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
-                <div>
-                  <h3 className="font-bold">{item.title}</h3>
-                  <p className="text-purple-300 text-sm">{item.category}</p>
+        {/* Tabs */}
+        <div className="flex justify-center mb-8 space-x-4">
+          <button
+            onClick={() => setActiveTab("designs")}
+            className={`px-4 py-2 rounded-md ${activeTab === "designs" ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white" : "bg-gray-800 text-gray-300 hover:text-white hover:bg-gray-700/50"}`}
+          >
+            <svg ref={el => el && PaletteIcon.attachTo(el)} width="16" height="16" className="inline mr-1"></svg>
+            Designs
+          </button>
+          <button
+            onClick={() => setActiveTab("videos")}
+            className={`px-4 py-2 rounded-md ${activeTab === "videos" ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white" : "bg-gray-800 text-gray-300 hover:text-white hover:bg-gray-700/50"}`}
+          >
+            <svg ref={el => el && VideoIcon.attachTo(el)} width="16" height="16" className="inline mr-1"></svg>
+            Videos
+          </button>
+        </div>
+
+        {/* Portfolio */}
+        {activeTab === "designs" && (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {designPortfolio.map(item => (
+              <div key={item.id} className="group relative overflow-hidden rounded-2xl cursor-pointer bg-gray-800 hover:shadow-2xl hover:shadow-purple-500/20 transition-transform duration-500 transform hover:scale-105 hover:-translate-y-2">
+                <img src={item.thumbnail} alt={item.title} className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"/>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
+                  <div>
+                    <h3 className="font-bold">{item.title}</h3>
+                    <p className="text-purple-300 text-sm">{item.category}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
 
-      {/* Videos Grid */}
-      {activeTab==='videos' && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
-          {videoPortfolio.map(video=>(
-            <div key={video.id} className="rounded-2xl overflow-hidden shadow-lg">
-              <div className="relative pb-[56.25%] h-0">
-                <iframe className="absolute top-0 left-0 w-full h-full" src={video.url} title={video.title} frameBorder="0" allowFullScreen></iframe>
+        {activeTab === "videos" && (
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+            {videoPortfolio.map(video => (
+              <div key={video.id} className="rounded-2xl overflow-hidden shadow-lg">
+                <div className="relative pb-[56.25%] h-0">
+                  <iframe className="absolute top-0 left-0 w-full h-full" src={video.url} title={video.title} frameBorder="0" allowFullScreen></iframe>
+                </div>
+                <div className="p-4">
+                  <h3 className="font-bold">{video.title}</h3>
+                </div>
               </div>
-              <div className="p-4">
-                <h3 className="font-bold">{video.title}</h3>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
 
-      {/* Contact Form */}
-      <section className="mt-12 max-w-xl mx-auto">
-        <h2 className="text-3xl font-bold mb-4 text-center">Contact Us</h2>
-        <form action="https://api.web3forms.com/submit" method="POST" className="flex flex-col gap-4 bg-gray-800 p-6 rounded-lg shadow-lg">
-          <input type="hidden" name="access_key" value="696f9140-c9ba-4c15-92ae-21337af3aa80"/>
-          <input type="text" name="name" placeholder="Your Name" required className="p-3 rounded bg-gray-700 text-white"/>
-          <input type="email" name="email" placeholder="Your Email" required className="p-3 rounded bg-gray-700 text-white"/>
-          <textarea name="message" placeholder="Your Message" required className="p-3 rounded bg-gray-700 text-white"></textarea>
-          <button type="submit" className="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded text-white font-bold hover:scale-105 transition-transform">Send Message</button>
-        </form>
-      </section>
+        {/* Contact Form */}
+        <section className="mt-12 max-w-xl mx-auto">
+          <h2 className="text-3xl font-bold mb-4 text-center">Contact Us</h2>
+          <form action="https://api.web3forms.com/submit" method="POST" className="flex flex-col gap-4 bg-gray-800 p-6 rounded-lg shadow-lg">
+            <input type="hidden" name="access_key" value="696f9140-c9ba-4c15-92ae-21337af3aa80"/>
+            <input type="text" name="name" placeholder="Your Name" required className="p-3 rounded bg-gray-700 text-white"/>
+            <input type="email" name="email" placeholder="Your Email" required className="p-3 rounded bg-gray-700 text-white"/>
+            <textarea name="message" placeholder="Your Message" required className="p-3 rounded bg-gray-700 text-white"></textarea>
+            <button type="submit" className="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded text-white font-bold hover:scale-105 transition-transform">Send Message</button>
+          </form>
+        </section>
 
-      <footer className="text-center mt-12 text-gray-400">
-        &copy; 2025 Kaafi Studio. All rights reserved.
-      </footer>
-    </div>
-  );
-};
+        <footer className="text-center mt-12 text-gray-400">
+          &copy; 2025 Kaafi Studio. All rights reserved.
+        </footer>
+      </div>
+    );
+  };
 
-ReactDOM.createRoot(document.getElementById('root')).render(<KaafiStudio />);
+  ReactDOM.createRoot(document.getElementById("root")).render(<KaafiStudio />);
 </script>
 
 </body>
